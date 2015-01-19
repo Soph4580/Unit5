@@ -254,7 +254,8 @@ Task t;
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuclearActionPerformed
-        this.dispose();
+        txtdesc.setText("");
+        txtname.setText("");
     }//GEN-LAST:event_mnuclearActionPerformed
 
     private void mnubeforeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnubeforeActionPerformed
