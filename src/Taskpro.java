@@ -35,7 +35,7 @@ Task t;
         btnprev = new javax.swing.JButton();
         btnlast = new javax.swing.JButton();
         btnnext = new javax.swing.JButton();
-        btnfirst = new javax.swing.JButton();
+        btnstart = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnushowall = new javax.swing.JMenuItem();
@@ -97,10 +97,10 @@ Task t;
             }
         });
 
-        btnfirst.setText("|<");
-        btnfirst.addActionListener(new java.awt.event.ActionListener() {
+        btnstart.setText("|<");
+        btnstart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnfirstActionPerformed(evt);
+                btnstartActionPerformed(evt);
             }
         });
 
@@ -143,6 +143,11 @@ Task t;
         jMenu2.add(mnuremove);
 
         mnurestore.setText("Restore Current Task to Screen");
+        mnurestore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnurestoreActionPerformed(evt);
+            }
+        });
         jMenu2.add(mnurestore);
 
         mnuclear.setText("Clear Screen");
@@ -185,7 +190,7 @@ Task t;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(btnfirst))
+                        .addComponent(btnstart))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -243,7 +248,7 @@ Task t;
                         .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnfirst)
+                    .addComponent(btnstart)
                     .addComponent(btnprev)
                     .addComponent(btnnext)
                     .addComponent(btnlast))
@@ -259,7 +264,21 @@ Task t;
     }//GEN-LAST:event_mnuclearActionPerformed
 
     private void mnubeforeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnubeforeActionPerformed
-        // TODO add your handling code here:
+        String nm = txtname.getText();
+        String d = txtdesc.getText();
+        t = new Task(nm, d);
+        if(t.validate()==false){
+            JOptionPane.showMessageDialog(this, "Error - Must enter all information");
+            return;
+        }
+                
+        li.add(t);
+        li.previous();
+        if(curtask==0)curtask++;
+        tottask++;
+        lblttask.setText(""+tottask);
+        lblctask.setText(""+curtask);
+        JOptionPane.showMessageDialog(this, "Task Added");
     }//GEN-LAST:event_mnubeforeActionPerformed
 
     private void mnuexitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuexitActionPerformed
@@ -289,19 +308,32 @@ Task t;
     }//GEN-LAST:event_btnnextActionPerformed
 
     private void btnprevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprevActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnprevActionPerformed
-
-    private void btnfirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfirstActionPerformed
-       if(curtask==tottask)return;
-        while(li.hasPrevious())
-           li.next();
-        t=(Task)li.previous();
-        curtask=tottask;
+        if(curtask==1) return;
+        int back = curtask -1;
+        curtask=1;
         lblctask.setText(""+curtask);
+        for (int x =0;x<back;x++){
+            li.previous();
+        }
+        li.next();
+        t = (Task)li.previous();
         txtname.setText(t.getName());
         txtdesc.setText(t.getDescription());
-    }//GEN-LAST:event_btnfirstActionPerformed
+    }//GEN-LAST:event_btnprevActionPerformed
+
+    private void btnstartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnstartActionPerformed
+      if(curtask==1) return;
+        int back = curtask -1;//how far do we need to go back
+        curtask=1;
+        lblctask.setText(""+curtask);
+        for (int x =0;x<back;x++){
+            li.previous();
+        }
+        li.next();//so it's behind so the previous method can get the first task
+        t = (Task)li.previous();
+        txtname.setText(t.getName());
+        txtdesc.setText(t.getDescription());
+    }//GEN-LAST:event_btnstartActionPerformed
 
     private void txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameActionPerformed
         // TODO add your handling code here:
@@ -377,6 +409,11 @@ Task t;
         JOptionPane.showMessageDialog(this,result);
     }//GEN-LAST:event_mnushowallActionPerformed
 
+    private void mnurestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnurestoreActionPerformed
+        txtdesc.setText(t.getDescription());
+        txtname.setText(t.getName());
+    }//GEN-LAST:event_mnurestoreActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -413,10 +450,10 @@ Task t;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnfirst;
     private javax.swing.JButton btnlast;
     private javax.swing.JButton btnnext;
     private javax.swing.JButton btnprev;
+    private javax.swing.JButton btnstart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -52,6 +52,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Restore Current Task to Screen"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnurestoreActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuclear">
               <Properties>
@@ -116,7 +119,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="btnfirst" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnstart" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -196,7 +199,7 @@
               </Group>
               <EmptySpace pref="18" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnfirst" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnstart" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnprev" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnnext" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnlast" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -292,12 +295,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnnextActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnfirst">
+    <Component class="javax.swing.JButton" name="btnstart">
       <Properties>
         <Property name="text" type="java.lang.String" value="|&lt;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnfirstActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnstartActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
