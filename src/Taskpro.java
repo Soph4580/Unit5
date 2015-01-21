@@ -323,13 +323,13 @@ Task t;
 
     private void btnstartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnstartActionPerformed
       if(curtask==1) return;
-        int back = curtask -1;//how far do we need to go back
+        int back = curtask -1;
         curtask=1;
         lblctask.setText(""+curtask);
         for (int x =0;x<back;x++){
             li.previous();
         }
-        li.next();//so it's behind so the previous method can get the first task
+        li.next();
         t = (Task)li.previous();
         txtname.setText(t.getName());
         txtdesc.setText(t.getDescription());
